@@ -1,0 +1,27 @@
+{
+  "name": "books-api",
+  "version": "0.0.1",
+  "description": "RESTful API of books I've read",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nayed/books-api.git"
+  },
+  "author": "Nayed Saïd Ali",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nayed/books-api/issues"
+  },
+  "homepage": "https://github.com/nayed/books-api#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-preset-es2015": "^6.5.0"
+  }
+}
