@@ -15,7 +15,7 @@ bookRouter.route('/books')      // localhost:3000/api/books
     .get((req, res) => {
         Book.find((err, books) => {
             if (err) {
-                console.log(err)
+                res.status(500).send(err)
             }
             else {
                 res.json(books)
