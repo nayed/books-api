@@ -11,9 +11,10 @@ const port = process.env.PORT || 3000
 
 let bookRouter = express.Router()
 
-bookRouter.route('/books')      // localhost:3000/api/books
+bookRouter.route('/books')              // localhost:3000/api/books
     .get((req, res) => {
-        Book.find((err, books) => {
+        let query = req.query           // localhost:3000/api/books?genre=Shonen
+        Book.find(query, (err, books) => {
             if (err) {
                 res.status(500).send(err)
             }
