@@ -1,17 +1,25 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import Book from './models/bookModel'
+import bodyParser from 'body-parser'
 
 const db = mongoose.connect('mongodb://localhost/bookAPI')
-
-import Book from './models/bookModel'
 
 const app = express()
 
 const port = process.env.PORT || 3000
 
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
+
 let bookRouter = express.Router()
 
 bookRouter.route('/Books')              // localhost:3000/api/books
+    .post((req, res) => {
+        let book = new Book(req.body)
+        console.log(book)
+        res.send(book)
+    })
     .get((req, res) => {
         let query = {}                  // localhost:3000/api/books?genre=Shonen or ?author=Tite Kubo
         if (req.query.genre) {
