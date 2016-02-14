@@ -17,8 +17,8 @@ let bookRouter = express.Router()
 bookRouter.route('/Books')              // localhost:3000/api/books
     .post((req, res) => {
         let book = new Book(req.body)
-        console.log(book)
-        res.send(book)
+        book.save()
+        res.status(201).send(book)
     })
     .get((req, res) => {
         let query = {}                  // localhost:3000/api/books?genre=Shonen or ?author=Tite Kubo
