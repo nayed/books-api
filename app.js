@@ -1,4 +1,9 @@
 import express from 'express'
+import mongoose from 'mongoose'
+
+const db = mongoose.connect('mongodb://localhost/bookAPI')
+
+import Book from './models/bookModel'
 
 const app = express()
 
@@ -8,8 +13,14 @@ let bookRouter = express.Router()
 
 bookRouter.route('/books')      // localhost:3000/api/books
     .get((req, res) => {
-        let responseJson = {hello: "This is my api"}
-        res.json(responseJson)
+        Book.find((err, books) => {
+            if (err) {
+                console.log(err)
+            }
+            else {
+                res.json(books)
+            }
+        })
     })
 
 app.use('/api', bookRouter)

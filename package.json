@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/nayed/books-api#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "mongoose": "^4.4.3"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
