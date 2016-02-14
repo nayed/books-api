@@ -13,7 +13,10 @@ let bookRouter = express.Router()
 
 bookRouter.route('/books')              // localhost:3000/api/books
     .get((req, res) => {
-        let query = req.query           // localhost:3000/api/books?genre=Shonen
+        let query = {}                  // localhost:3000/api/books?genre=Shonen or ?author=Tite Kubo
+        if (req.query.genre) {
+            query.genre = req.query.genre
+        }
         Book.find(query, (err, books) => {
             if (err) {
                 res.status(500).send(err)
