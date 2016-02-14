@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000
 
 let bookRouter = express.Router()
 
-bookRouter.route('/books')              // localhost:3000/api/books
+bookRouter.route('/Books')              // localhost:3000/api/books
     .get((req, res) => {
         let query = {}                  // localhost:3000/api/books?genre=Shonen or ?author=Tite Kubo
         if (req.query.genre) {
@@ -23,6 +23,18 @@ bookRouter.route('/books')              // localhost:3000/api/books
             }
             else {
                 res.json(books)
+            }
+        })
+    })
+
+bookRouter.route('/Books/:bookId')      // http://localhost:3000/api/books/IDNUMBERSTUFF
+    .get((req, res) => {
+        Book.findById(req.params.bookId, (err, book) => {
+            if (err) {
+                res.status(500).send(err)
+            }
+            else {
+                res.json(book)
             }
         })
     })
