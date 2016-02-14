@@ -1,10 +1,9 @@
 import express from 'express'
-import Book from '../models/bookModel' 
 
-let bookRouter = () => {
+let bookRouter = (Book) => {
     let bookRoute = express.Router()
 
-    bookRoute.route('/Books')              // localhost:3000/api/books
+    bookRoute.route('/')              // localhost:3000/api/books
         .post((req, res) => {
             let book = new Book(req.body)
             book.save()
@@ -25,7 +24,7 @@ let bookRouter = () => {
             })
         })
 
-    bookRoute.route('/Books/:bookId')      // http://localhost:3000/api/books/IDNUMBERSTUFF
+    bookRoute.route('/:bookId')      // http://localhost:3000/api/books/IDNUMBERSTUFF
         .get((req, res) => {
             Book.findById(req.params.bookId, (err, book) => {
                 if (err) {
