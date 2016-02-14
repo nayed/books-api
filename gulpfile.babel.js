@@ -4,7 +4,7 @@ var babel = require('gulp-babel')
 
 gulp.task('run', function() {
     return nodemon({
-        script: 'app.js',
+        script: 'api/app.js',
         ext: 'js',
         env: {
             PORT: 3000
