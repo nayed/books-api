@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 
 app.use('/api/books', bookRouter(Book))
-//app.use('/api/authors', bookRouter(Book))
+//app.use('/api/authors', authorRouter(Author)) or something like that
 
 app.get('/', (req, res) => {
     res.send('welcome to my API!')
