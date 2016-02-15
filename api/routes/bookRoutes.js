@@ -24,31 +24,31 @@ let bookRouter = (Book) => {
             })
         })
 
+    bookRoute.use('/:bookId', (req, res, next) => {     //middleware for bookId
+        Book.findById(req.params.bookId, (err, book) => {
+            if (err) {
+                res.status(500).send(err)
+            }
+            else if (book) {
+                req.book = book
+                next()
+            }
+            else {
+                res.status(404).send('no book found')
+            }
+        })
+    })
     bookRoute.route('/:bookId')      // http://localhost:3000/api/books/IDNUMBERSTUFF
         .get((req, res) => {
-            Book.findById(req.params.bookId, (err, book) => {
-                if (err) {
-                    res.status(500).send(err)
-                }
-                else {
-                    res.json(book)
-                }
-            })
+            res.json(req.book)
         })
         .put((req, res) => {
-            Book.findById(req.params.bookId, (err, book) => {
-                if (err) {
-                    res.status(500).send(err)
-                }
-                else {
-                    book.title = req.body.title
-                    book.author = req.body.author
-                    book.genre = req.body.genre
-                    book.read = req.body.read
-                    book.save()
-                    res.json(book)
-                }
-            })
+            req.book.title = req.body.title
+            req.book.author = req.body.author
+            req.book.genre = req.body.genre
+            req.book.read = req.body.read
+            req.book.save()
+            res.json(req.book)
         })
     return bookRoute
 }
