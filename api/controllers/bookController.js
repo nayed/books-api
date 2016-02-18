@@ -9,7 +9,7 @@ export let bookController = Book => {
         else {
             book.save()
             res.status(201)
-            send(book)
+            res.send(book)
         }
     }
 

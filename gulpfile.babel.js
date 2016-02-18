@@ -1,7 +1,8 @@
-var gulp = require('gulp')
-var nodemon = require('gulp-nodemon')
-var babel = require('gulp-babel')
-var gulpMocha = require('gulp-mocha')
+import gulp from 'gulp'
+import nodemon from 'gulp-nodemon'
+import babel from 'gulp-babel'
+import gulpMocha from 'gulp-mocha'
+import env from 'gulp-env'
 
 gulp.task('run', () => {
     return nodemon({
@@ -19,6 +20,7 @@ gulp.task('run', () => {
 })
 
 gulp.task('test', () => {
+    env({vars: {ENV:'Test'}})
     gulp.src('./tests/*.js', {read: false})
         .pipe(gulpMocha({reporter: 'nyan'}))
 })

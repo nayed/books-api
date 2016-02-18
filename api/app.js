@@ -4,9 +4,16 @@ import bodyParser from 'body-parser'
 import Book from './models/bookModel' 
 import {bookRouter} from './routes/bookRoutes'
 
-const db = mongoose.connect('mongodb://localhost/bookAPI')
+let db
 
-const app = express()
+if (process.env.ENV == 'Test') {
+    db = mongoose.connect('mongodb://localhost/bookAPI_test')
+}
+else {
+    db = mongoose.connect('mongodb://localhost/bookAPI')
+}
+
+let app = express()
 
 const port = process.env.PORT || 3000
 
@@ -24,3 +31,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Running on PORT: ${port}`)
 })
+
+export {app}
