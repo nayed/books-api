@@ -26,7 +26,8 @@ let bookRouter = Book => {
         .get((req, res) => {
             let returnBook = req.book.toJSON()
             returnBook.links = {}
-            returnBook.links.FilterByThisGenre = `http://${req.headers.host}/api/books/?genre=${returnBook.genre}`
+            let newLink = `http://${req.headers.host}/api/books/?genre=${returnBook.genre}`
+            returnBook.links.FilterByThisGenre = newLink.replace(' ', '%20')
             res.json(returnBook)
         })
         .put((req, res) => {
