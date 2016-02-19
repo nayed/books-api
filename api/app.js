@@ -6,12 +6,10 @@ import {bookRouter} from './routes/bookRoutes'
 
 let db
 
-if (process.env.ENV == 'Test') {
+if (process.env.ENV == 'Test') 
     db = mongoose.connect('mongodb://localhost/bookAPI_test')
-}
-else {
+else 
     db = mongoose.connect('mongodb://localhost/bookAPI')
-}
 
 let app = express()
 
