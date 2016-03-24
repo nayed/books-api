@@ -4,7 +4,8 @@ let bookModel = new Schema({
     title: {type: String},
     author: {type: String},
     genre: {type: String},
-    score: {type: Number}
+    score: {type: Number},
+    comment: {type: String, default: null}
 })
 
 export default mongoose.model('Book', bookModel)
