@@ -5,7 +5,7 @@ let bookRouter = Book => {
     let bookRoute = express.Router()
     let bookCtrl = bookController(Book)
 
-    bookRoute.route('/')                            // localhost:3000/api/books
+    bookRoute.route('/')                            // localhost:3000/api/v1/books
         .post(bookCtrl.post)
         .get(bookCtrl.get)
 
@@ -22,11 +22,11 @@ let bookRouter = Book => {
         })
     })
 
-    bookRoute.route('/:bookId')                         // http://localhost:3000/api/books/IDNUMBERSTUFF
+    bookRoute.route('/:bookId')                         // http://localhost:3000/api/v1/books/IDNUMBERSTUFF
         .get((req, res) => {
             let returnBook = req.book.toJSON()
             returnBook.links = {}
-            let newLink = `http://${req.headers.host}/api/books/?genre=${returnBook.genre}`
+            let newLink = `http://${req.headers.host}/api/v1/books/?genre=${returnBook.genre}`
             returnBook.links.FilterByThisGenre = newLink.replace(' ', '%20')
             res.json(returnBook)
         })
@@ -34,7 +34,7 @@ let bookRouter = Book => {
             req.book.title = req.body.title
             req.book.author = req.body.author
             req.book.genre = req.body.genre
-            req.book.read = req.body.read
+            req.book.score = req.body.score
             req.book.save(err => {
                 if (err) 
                     res.status(500).send(err)

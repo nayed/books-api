@@ -14,7 +14,7 @@ export let bookController = Book => {
     }
 
     let get = (req, res) => {
-        let query = {}                          // localhost:3000/api/books?genre=Shonen or ?author=Tite Kubo
+        let query = {}                          // localhost:3000/api/v1/books?genre=Shonen or ?author=Tite Kubo
         if (req.query.genre) 
             query.genre = req.query.genre
         
@@ -26,7 +26,7 @@ export let bookController = Book => {
                 books.forEach((element, index, array) => {
                     let newBook = element.toJSON()
                     newBook.links = {}
-                    newBook.links.self = `http://${req.headers.host}/api/books/${newBook._id}`
+                    newBook.links.self = `http://${req.headers.host}/api/v1/books/${newBook._id}`
                     returnBooks.push(newBook)
                 })
                 res.json(returnBooks)
